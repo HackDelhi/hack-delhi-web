@@ -1,0 +1,28 @@
+body {
+  font-family: "Raleway", "Arial", sans-serif;
+  text-align: center;
+  background: #282c34;
+  color: #E3E3E3;
+}
+h1 {
+  //text-shadow: 0 0 10px #000;
+  font-weight: 400;
+}
+.showtime {
+  position: relative;
+  border-radius: 17px;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  background: black;
+  border: solid 2px #FFF;
+  overflow: hidden;
+}
+img {
+  position: absolute;
+  top:0;
+  left:0;
+}
+.ac-1, .ac-2, .ac-3 {
+  display: none;
+}
