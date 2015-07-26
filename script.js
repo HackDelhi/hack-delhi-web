@@ -1,8 +1,9 @@
-var t,active_state="dem";
+var t,active_state="0";
 var getStat = function() {
   clearInterval(t);
-  $.getJSON("http://192.168.2.18/hack-delhi-web/process.php?update", function(e){
+  $.getJSON("http://192.168.2.18/hack-delhi-web/train/2", function(e){
     console.log(e);
+    $(".count").html( (e.status)<10?"0"+e.status:e.status );
     animate(e.status);
     t = setTimeout(getStat, 1000);
   });
@@ -12,18 +13,28 @@ window.onload = function() {
 }
 
 var animate = function(st) {
-  if(parseInt(st) == 0)
-    st = "dem";
-  if(st == active_state) return;
   var el = $("body");
   var m = parseInt(st);
+  if(m == 0){
+    m = 0;
+  } else if(m == 1){
+    m = 10;
+  } else if(m<=2) {
+    m = 1;
+  } else if (m<=4){
+    m = 2;
+  } else {
+    m = 3;
+  }
+  if(m == active_state) return;
   switch (m) {
-    case 1: el.css('background','#55a629');break;
-    case 2: el.css('background','#bfbd16');break;
-    case 3: el.css('background','#af2525');break;
-    default: el.css('background','#376cc3');break;
+    case 1:
+    case 10: el.css('background-color','#55a629');break;
+    case 2: el.css('background-color','#bfbd16');break;
+    case 3: el.css('background-color','#af2525');break;
+    default: el.css('background-color','#376cc3');break;
   }
   $(".ac-" + active_state).fadeOut(600);
-  $(".ac-" + st).fadeIn(600);
-  active_state = st;
+  $(".ac-" + m).fadeIn(600);
+  active_state = m;
 }
